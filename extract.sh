@@ -149,7 +149,7 @@ for FILE in $(cat $BLOBS_TXT | grep -v -E '^ *(#|$)' | sed 's/^[-\/]*//' | sort 
     if [ "$SOURCE" = "adb" ]; then
         adb pull -p -a $FILE $BLOBS_ROOT/$FILE
     else
-        cp --no-dereference --preserve=links $SOURCE/$FILE $BLOBS_ROOT/$FILE
+        cp $SOURCE/$FILE $BLOBS_ROOT/$FILE
     fi
 done
 
