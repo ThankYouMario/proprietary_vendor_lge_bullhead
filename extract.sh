@@ -31,8 +31,10 @@ echo "# REPO_ROOT=$REPO_ROOT"
 
 BLOBS_ROOT=$REPO_ROOT/proprietary
 VENDOR_MAKEFILE=$REPO_ROOT/device-vendor.mk
+VENDOR_APKS_MAKEFILE=$REPO_ROOT/device-vendor-apks.mk
 echo "  BLOBS_ROOT=$BLOBS_ROOT"
 echo "  VENDOR_MAKEFILE=$VENDOR_MAKEFILE"
+echo "  VENDOR_APKS_MAKEFILE=$VENDOR_APKS_MAKEFILE"
 
 # All hail the common header
 
@@ -170,14 +172,51 @@ $HEADER
 DEVICE_PACKAGE_OVERLAYS := vendor/$VENDOR/$DEVICE/overlay
 
 # Builder instructions about what proprietary files to include
+\$(call inherit-product-if-exists, vendor/$VENDOR/$DEVICE/device-vendor-apks.mk)
+
 EOF
 
 echo -n "PRODUCT_COPY_FILES +=" >> $VENDOR_MAKEFILE
-for FILE in $(cat $BLOBS_TXT | grep -v -E '^ *(#|$)' | sed 's/^[-\/]*//' | sort -s); do
+for FILE in $(cat $BLOBS_TXT | grep -v -E '^ *(#|$)' | grep -v -E '\.apk *$' | sed 's/^[-\/]*//' | sort -s); do
     echo -n " \\
     vendor/$VENDOR/$DEVICE/proprietary/$FILE:$FILE" >> $VENDOR_MAKEFILE
 done
 echo "" >> $VENDOR_MAKEFILE
+
+# Throw in a list of the includeable APKs
+
+HAS_APK=false
+for FILE in $(cat $BLOBS_TXT | grep -v -E '^ *(#|$)' | grep -E '\.apk *$' | sed 's/^[-\/]*//' | sort -s); do
+    APK_NAME=$(basename -s .apk $FILE)
+    if [ $HAS_APK == false ]; then
+        echo -n "
+PRODUCT_PACKAGES +=" >> $VENDOR_MAKEFILE
+        (cat << EOF) > $VENDOR_APKS_MAKEFILE
+$HEADER
+
+LOCAL_PATH := \$(call my-dir)
+
+ifeq (\$(TARGET_DEVICE),$DEVICE)
+EOF
+        HAS_APK=true
+    fi
+    echo -n " \\
+    $APK_NAME" >> $VENDOR_MAKEFILE
+    echo "
+include \$(CLEAR_VARS)
+LOCAL_MODULE := $APK_NAME
+LOCAL_MODULE_CLASS := APPS
+LOCAL_MODULE_SUFFIX := \$(COMMON_ANDROID_PACKAGE_SUFFIX)
+LOCAL_MODULE_TAGS := optional
+LOCAL_CERTIFICATE := platform
+LOCAL_SRC_FILES := proprietary/$FILE
+include \$(BUILD_PREBUILT)" >> $VENDOR_APKS_MAKEFILE
+done
+if [ $HAS_APK == true ]; then
+    echo "
+endif" >> $VENDOR_APKS_MAKEFILE
+    echo "" >> $VENDOR_MAKEFILE
+fi
 
 # Throw in an additional empty board configuration
 

@@ -18,13 +18,9 @@
 DEVICE_PACKAGE_OVERLAYS := vendor/lge/bullhead/overlay
 
 # Builder instructions about what proprietary files to include
+$(call inherit-product-if-exists, vendor/lge/bullhead/device-vendor-apks.mk)
+
 PRODUCT_COPY_FILES += \
-    vendor/lge/bullhead/proprietary/system/app/atfwd/atfwd.apk:system/app/atfwd/atfwd.apk \
-    vendor/lge/bullhead/proprietary/system/app/HiddenMenu/HiddenMenu.apk:system/app/HiddenMenu/HiddenMenu.apk \
-    vendor/lge/bullhead/proprietary/system/app/qcrilmsgtunnel/qcrilmsgtunnel.apk:system/app/qcrilmsgtunnel/qcrilmsgtunnel.apk \
-    vendor/lge/bullhead/proprietary/system/app/RCSBootstraputil/RCSBootstraputil.apk:system/app/RCSBootstraputil/RCSBootstraputil.apk \
-    vendor/lge/bullhead/proprietary/system/app/RcsImsBootstraputil/RcsImsBootstraputil.apk:system/app/RcsImsBootstraputil/RcsImsBootstraputil.apk \
-    vendor/lge/bullhead/proprietary/system/app/TimeService/TimeService.apk:system/app/TimeService/TimeService.apk \
     vendor/lge/bullhead/proprietary/system/bin/ATFWD-daemon:system/bin/ATFWD-daemon \
     vendor/lge/bullhead/proprietary/system/bin/btnvtool:system/bin/btnvtool \
     vendor/lge/bullhead/proprietary/system/bin/cnd:system/bin/cnd \
@@ -111,13 +107,21 @@ PRODUCT_COPY_FILES += \
     vendor/lge/bullhead/proprietary/system/lib/libmmjpeg_interface.so:system/lib/libmmjpeg_interface.so \
     vendor/lge/bullhead/proprietary/system/lib/libqomx_core.so:system/lib/libqomx_core.so \
     vendor/lge/bullhead/proprietary/system/lib/soundfx/libfmas.so:system/lib/soundfx/libfmas.so \
-    vendor/lge/bullhead/proprietary/system/priv-app/CNEService/CNEService.apk:system/priv-app/CNEService/CNEService.apk \
-    vendor/lge/bullhead/proprietary/system/priv-app/ConnMO/ConnMO.apk:system/priv-app/ConnMO/ConnMO.apk \
-    vendor/lge/bullhead/proprietary/system/priv-app/DCMO/DCMO.apk:system/priv-app/DCMO/DCMO.apk \
-    vendor/lge/bullhead/proprietary/system/priv-app/DiagMon/DiagMon.apk:system/priv-app/DiagMon/DiagMon.apk \
-    vendor/lge/bullhead/proprietary/system/priv-app/DMConfigUpdate/DMConfigUpdate.apk:system/priv-app/DMConfigUpdate/DMConfigUpdate.apk \
     vendor/lge/bullhead/proprietary/system/priv-app/DMService/lib/arm/libdmengine.so:system/priv-app/DMService/lib/arm/libdmengine.so \
-    vendor/lge/bullhead/proprietary/system/priv-app/DMService/lib/arm/libdmjavaplugin.so:system/priv-app/DMService/lib/arm/libdmjavaplugin.so \
-    vendor/lge/bullhead/proprietary/system/priv-app/HotwordEnrollment/HotwordEnrollment.apk:system/priv-app/HotwordEnrollment/HotwordEnrollment.apk \
-    vendor/lge/bullhead/proprietary/system/priv-app/LifeTimerService/LifeTimerService.apk:system/priv-app/LifeTimerService/LifeTimerService.apk \
-    vendor/lge/bullhead/proprietary/system/priv-app/SprintDM/SprintDM.apk:system/priv-app/SprintDM/SprintDM.apk
+    vendor/lge/bullhead/proprietary/system/priv-app/DMService/lib/arm/libdmjavaplugin.so:system/priv-app/DMService/lib/arm/libdmjavaplugin.so
+
+PRODUCT_PACKAGES += \
+    atfwd \
+    HiddenMenu \
+    qcrilmsgtunnel \
+    RCSBootstraputil \
+    RcsImsBootstraputil \
+    TimeService \
+    CNEService \
+    ConnMO \
+    DCMO \
+    DiagMon \
+    DMConfigUpdate \
+    HotwordEnrollment \
+    LifeTimerService \
+    SprintDM
