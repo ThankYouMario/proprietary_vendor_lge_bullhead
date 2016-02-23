@@ -267,8 +267,11 @@ LOCAL_MODULE := $APK_NAME
 LOCAL_MODULE_CLASS := APPS
 LOCAL_MODULE_SUFFIX := \$(COMMON_ANDROID_PACKAGE_SUFFIX)
 LOCAL_MODULE_TAGS := optional
-LOCAL_CERTIFICATE := platform
-LOCAL_SRC_FILES := proprietary/$FILE
+LOCAL_CERTIFICATE := platform" >> $ANDROID_MAKEFILE
+    if [[ "$FILE" =~ "system/priv-app/".* ]]; then
+        echo "LOCAL_PRIVILEGED_MODULE := true" >> $ANDROID_MAKEFILE
+    fi
+    echo "LOCAL_SRC_FILES := proprietary/$FILE
 include \$(BUILD_PREBUILT)" >> $ANDROID_MAKEFILE
 done
 if [ "$HAS_APK" = "true" ]; then
