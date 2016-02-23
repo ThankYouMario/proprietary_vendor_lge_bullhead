@@ -33,12 +33,12 @@ mkdir /tmp/aospa
 
 BLOBS_ROOT=$REPO_ROOT/proprietary
 VENDOR_MAKEFILE=$REPO_ROOT/device-vendor.mk
-VENDOR_APKS_MAKEFILE=$REPO_ROOT/device-vendor-apks.mk
+ANDROID_MAKEFILE=$REPO_ROOT/Android.mk
 OAT2DEX_PATH=$REPO_ROOT/oat2dex.jar
 SMALI_PATH=$REPO_ROOT/smali.jar
 echo "  BLOBS_ROOT=$BLOBS_ROOT"
 echo "  VENDOR_MAKEFILE=$VENDOR_MAKEFILE"
-echo "  VENDOR_APKS_MAKEFILE=$VENDOR_APKS_MAKEFILE"
+echo "  ANDROID_MAKEFILE=$ANDROID_MAKEFILE"
 echo -n "  OAT2DEX_PATH=$OAT2DEX_PATH"
 if [ ! -f "$OAT2DEX_PATH" ]; then
     echo " (downloading..)"
@@ -125,12 +125,12 @@ if [ ! -d "$BLOBS_ROOT" ]; then
     exit 3
 fi
 
-if [ ! -d "$SOURCE" ]; then
+if [ ! -d "$SOURCE" ] || [ ! -d "$SOURCE/system" ]; then
     echo ""
     echo "    $SCRIPT_NAME: missing source directory"
     echo ""
     echo "    To continue with the current configuration, extract"
-    echo "    your device to ${SOURCE}."
+    echo "    your system to ${SOURCE}."
     echo ""
     exit 4
 fi
@@ -143,8 +143,8 @@ echo ""
 if [ -f "$SOURCE/system/framework/arm/boot.oat" ]; then
     echo "Deoptimizing boot classes for other applications..."
     rm -rf $SOURCE/system/framework/arm/dex
-    mkdir $SOURCE/system/framework/arm/dex
     rm -rf $SOURCE/system/framework/arm/odex
+    mkdir $SOURCE/system/framework/arm/dex
     mkdir $SOURCE/system/framework/arm/odex
     java -jar $OAT2DEX_PATH boot $SOURCE/system/framework/arm/boot.oat > /dev/null
     echo ""
@@ -152,8 +152,8 @@ fi
 if [ -f "$SOURCE/system/framework/arm64/boot.oat" ]; then
     echo "Deoptimizing 64-bit boot classes for other applications..."
     rm -rf $SOURCE/system/framework/arm64/dex
+    rm -rf $SOURCE/system/framework/arm64/odex
     mkdir $SOURCE/system/framework/arm64/dex
-    rm -rf $SOURCE/system/framework/arm64/dex
     mkdir $SOURCE/system/framework/arm64/odex
     java -jar $OAT2DEX_PATH boot $SOURCE/system/framework/arm64/boot.oat > /dev/null
     echo ""
@@ -199,15 +199,13 @@ for FILE in $(cat $BLOBS_TXT | grep -v -E '^ *(#|$)' | sed 's/^[-\/]*//' | sort 
         fi
 
         if [ -f "$OAT_FILE" ] && [ -d "$BOOT_DIR" ]; then
-            mkdir /tmp/aospa/dex
-            java -jar $OAT2DEX_PATH -o /tmp/aospa/dex $OAT_FILE $BOOT_DIR > /dev/null
+            java -jar $OAT2DEX_PATH $OAT_FILE $BOOT_DIR > /dev/null
             mkdir /tmp/aospa/smali
-            java -jar $OAT2DEX_PATH -o /tmp/aospa/smali smali /tmp/aospa/dex/$TARGET_FILE_BASE.dex > /dev/null
-            rm -rf /tmp/aospa/dex
+            java -jar $OAT2DEX_PATH -o /tmp/aospa/smali smali $(dirname $OAT_FILE)/$TARGET_FILE_BASE.dex > /dev/null
             java -jar $SMALI_PATH -o /tmp/aospa/classes.dex /tmp/aospa/smali > /dev/null
             rm -rf /tmp/aospa/smali
             zip -gjq $TARGET_FILE /tmp/aospa/classes.dex
-            rm /tmp/aospa/classes.dex
+            rm -f /tmp/aospa/classes.dex
             echo "  Repackaged $TARGET_FILE_BASE ($FILE)."
         fi
     fi
@@ -235,9 +233,6 @@ $HEADER
 # An overlay for features that depend on proprietary files
 DEVICE_PACKAGE_OVERLAYS := vendor/$VENDOR/$DEVICE/overlay
 
-# Builder instructions about what proprietary files to include
-\$(call inherit-product-if-exists, vendor/$VENDOR/$DEVICE/device-vendor-apks.mk)
-
 EOF
 
 echo -n "PRODUCT_COPY_FILES +=" >> $VENDOR_MAKEFILE
@@ -255,7 +250,7 @@ for FILE in $(cat $BLOBS_TXT | grep -v -E '^ *(#|$)' | grep -E '\.apk *$' | sed 
     if [ "$HAS_APK" != "true" ]; then
         echo -n "
 PRODUCT_PACKAGES +=" >> $VENDOR_MAKEFILE
-        (cat << EOF) > $VENDOR_APKS_MAKEFILE
+        (cat << EOF) > $ANDROID_MAKEFILE
 $HEADER
 
 LOCAL_PATH := \$(call my-dir)
@@ -274,11 +269,11 @@ LOCAL_MODULE_SUFFIX := \$(COMMON_ANDROID_PACKAGE_SUFFIX)
 LOCAL_MODULE_TAGS := optional
 LOCAL_CERTIFICATE := platform
 LOCAL_SRC_FILES := proprietary/$FILE
-include \$(BUILD_PREBUILT)" >> $VENDOR_APKS_MAKEFILE
+include \$(BUILD_PREBUILT)" >> $ANDROID_MAKEFILE
 done
 if [ "$HAS_APK" = "true" ]; then
     echo "
-endif" >> $VENDOR_APKS_MAKEFILE
+endif" >> $ANDROID_MAKEFILE
     echo "" >> $VENDOR_MAKEFILE
 fi
 
