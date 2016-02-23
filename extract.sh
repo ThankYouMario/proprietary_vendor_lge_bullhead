@@ -34,22 +34,22 @@ mkdir /tmp/aospa
 BLOBS_ROOT=$REPO_ROOT/proprietary
 VENDOR_MAKEFILE=$REPO_ROOT/device-vendor.mk
 ANDROID_MAKEFILE=$REPO_ROOT/Android.mk
-OAT2DEX_PATH=$REPO_ROOT/oat2dex.jar
+BAKSMALI_PATH=$REPO_ROOT/baksmali.jar
 SMALI_PATH=$REPO_ROOT/smali.jar
 echo "  BLOBS_ROOT=$BLOBS_ROOT"
 echo "  VENDOR_MAKEFILE=$VENDOR_MAKEFILE"
 echo "  ANDROID_MAKEFILE=$ANDROID_MAKEFILE"
-echo -n "  OAT2DEX_PATH=$OAT2DEX_PATH"
-if [ ! -f "$OAT2DEX_PATH" ]; then
+echo -n "  BAKSMALI_PATH=$BAKSMALI_PATH"
+if [ ! -f "$BAKSMALI_PATH" ]; then
     echo " (downloading..)"
-    wget --quiet -O $OAT2DEX_PATH 'https://github.com/testwhat/SmaliEx/blob/0.86/smaliex-bin/oat2dex.jar?raw=true'
+    wget --quiet -O $BAKSMALI_PATH 'https://bitbucket.org/JesusFreke/smali/downloads/baksmali-2.1.1.jar'
 else
     echo ""
 fi
 echo -n "  SMALI_PATH=$SMALI_PATH"
 if [ ! -f "$SMALI_PATH" ]; then
     echo " (downloading..)"
-    wget --quiet -O $SMALI_PATH 'https://github.com/testwhat/SmaliEx/blob/0.86/smaliex-bin/smali.jar?raw=true'
+    wget --quiet -O $SMALI_PATH 'https://bitbucket.org/JesusFreke/smali/downloads/smali-2.1.1.jar'
 else
     echo ""
 fi
@@ -139,26 +139,6 @@ fi
 
 echo ""
 
-# Deoptimize the boot classes for later
-if [ -f "$SOURCE/system/framework/arm/boot.oat" ]; then
-    echo "Deoptimizing boot classes for other applications..."
-    rm -rf $SOURCE/system/framework/arm/dex
-    rm -rf $SOURCE/system/framework/arm/odex
-    mkdir $SOURCE/system/framework/arm/dex
-    mkdir $SOURCE/system/framework/arm/odex
-    java -jar $OAT2DEX_PATH boot $SOURCE/system/framework/arm/boot.oat > /dev/null
-    echo ""
-fi
-if [ -f "$SOURCE/system/framework/arm64/boot.oat" ]; then
-    echo "Deoptimizing 64-bit boot classes for other applications..."
-    rm -rf $SOURCE/system/framework/arm64/dex
-    rm -rf $SOURCE/system/framework/arm64/odex
-    mkdir $SOURCE/system/framework/arm64/dex
-    mkdir $SOURCE/system/framework/arm64/odex
-    java -jar $OAT2DEX_PATH boot $SOURCE/system/framework/arm64/boot.oat > /dev/null
-    echo ""
-fi
-
 # Stop preparing and start by removing all old files
 
 echo "Making old files disappear..."
@@ -187,23 +167,21 @@ for FILE in $(cat $BLOBS_TXT | grep -v -E '^ *(#|$)' | sed 's/^[-\/]*//' | sort 
 
     # Clean up optimizations
     if [ "$TARGET_FILE_EXT" = "apk" ] || [ "$TARGET_FILE_EXT" = "jar" ]; then
-        if [ -f "$SOURCE/$FILE_DIR/oat/arm/$TARGET_FILE_BASE.odex" ] && [ -d "$SOURCE/system/framework/arm/odex" ]; then
+        if [ -f "$SOURCE/$FILE_DIR/oat/arm/$TARGET_FILE_BASE.odex" ] && [ -d "$SOURCE/system/framework/arm" ]; then
             OAT_FILE=$SOURCE/$FILE_DIR/oat/arm/$TARGET_FILE_BASE.odex
-            BOOT_DIR=$SOURCE/system/framework/arm/odex
-        elif [ -f "$SOURCE/$FILE_DIR/oat/arm64/$TARGET_FILE_BASE.odex" ] && [ -d "$SOURCE/system/framework/arm64/odex" ]; then
+            BOOT_DIR=$SOURCE/system/framework/arm
+        elif [ -f "$SOURCE/$FILE_DIR/oat/arm64/$TARGET_FILE_BASE.odex" ] && [ -d "$SOURCE/system/framework/arm64" ]; then
             OAT_FILE=$SOURCE/$FILE_DIR/oat/arm64/$TARGET_FILE_BASE.odex
-            BOOT_DIR=$SOURCE/system/framework/arm64/odex
+            BOOT_DIR=$SOURCE/system/framework/arm64
         else
             OAT_FILE=
             BOOT_DIR=
         fi
 
         if [ -f "$OAT_FILE" ] && [ -d "$BOOT_DIR" ]; then
-            java -jar $OAT2DEX_PATH $OAT_FILE $BOOT_DIR > /dev/null
-            mkdir /tmp/aospa/smali
-            java -jar $OAT2DEX_PATH -o /tmp/aospa/smali smali $(dirname $OAT_FILE)/$TARGET_FILE_BASE.dex > /dev/null
-            java -jar $SMALI_PATH -o /tmp/aospa/classes.dex /tmp/aospa/smali > /dev/null
-            rm -rf /tmp/aospa/smali
+            java -jar $BAKSMALI_PATH -o /tmp/aospa/dex -c boot.oat -d $BOOT_DIR -x $OAT_FILE
+            java -jar $SMALI_PATH -o /tmp/aospa/classes.dex /tmp/aospa/dex
+            rm -rf /tmp/aospa/dex
             zip -gjq $TARGET_FILE /tmp/aospa/classes.dex
             rm -f /tmp/aospa/classes.dex
             echo "  Repackaged $TARGET_FILE_BASE ($FILE)."
