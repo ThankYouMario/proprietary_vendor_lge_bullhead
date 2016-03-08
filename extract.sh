@@ -104,7 +104,8 @@ else
     echo "    usage: $SCRIPT_NAME <path-to-source>"
     echo ""
     echo "    The path-to-source argument should be the absolute path to the"
-    echo "    root of the extracted device's image."
+    echo "    factory image package (.tgz) or the root of the extracted"
+    echo "    device's image."
     echo ""
     exit 2
 fi
@@ -123,6 +124,37 @@ if [ ! -d "$BLOBS_ROOT" ]; then
     echo "    create ${BLOBS_ROOT}."
     echo ""
     exit 3
+fi
+
+if [ -f "$SOURCE" ]; then
+    BUILD_NAME=$(basename "$SOURCE" | sed -r -e 's/(.*-[a-z]{3}[1-9]{2}[a-z])-factory-[1-9a-f]{8}.tgz/\1/')
+    if [ -z "$BUILD_NAME" ]; then
+        echo ""
+        echo "    $SCRIPT_NAME: unable to parse build ID"
+        echo ""
+        echo "    The build ID could not be gathered from the package filename."
+        echo ""
+        exit 5
+    fi
+    echo ""
+    echo "Extracting the $BUILD_NAME package..."
+    cd /tmp/aospa
+    tar -xf "$SOURCE"
+    cd "$BUILD_NAME"
+    rm -f *.bat *.img *.sh
+    echo "  Inflating factory images."
+    unzip -q image-$BUILD_NAME.zip
+    mv system.img ../$BUILD_NAME-system.img
+    rm *.img *.txt *.zip
+    echo "  Converting system image for mounting."
+    simg2img ../$BUILD_NAME-system.img system.img
+    rm ../$BUILD_NAME-system.img
+    mkdir system
+    echo "  Mounting system image."
+    sudo mount system.img system
+    SYSTEM_MOUNT=/tmp/aospa/$BUILD_NAME/system
+    sudo chown -R $(id -u):$(id -g) .
+    SOURCE=/tmp/aospa/$BUILD_NAME
 fi
 
 if [ ! -d "$SOURCE" ] || [ ! -d "$SOURCE/system" ]; then
@@ -268,5 +300,11 @@ echo ""
 
 # Let the user know we performed well and finished nicely
 
-rm -rf /tmp/aospa
 echo "Done with setting up makefiles."
+if [ ! -z "$SYSTEM_MOUNT" ]; then
+    echo "  Unmounting system image."
+    sudo umount "$SYSTEM_MOUNT"
+fi
+echo "  Removing temporary files."
+rm -rf /tmp/aospa
+echo ""
