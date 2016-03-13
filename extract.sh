@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 set -e
 SCRIPT_NAME=$(basename $0)
 KERNEL_NAME=$(uname -s)
@@ -145,14 +145,28 @@ if [ -f "$SOURCE" ]; then
     echo "  Inflating factory images."
     unzip -q image-$BUILD_NAME.zip
     mv system.img ../$BUILD_NAME-system.img
+    if [ -f vendor.img ]; then
+        mv vendor.img ../$BUILD_NAME-vendor.img
+    fi
     rm *.img *.txt *.zip
     echo "  Converting system image for mounting."
     simg2img ../$BUILD_NAME-system.img system.img
     rm ../$BUILD_NAME-system.img
+    if [ -f ../$BUILD_NAME-vendor.img ]; then
+        echo "  Converting vendor image for mounting."
+        simg2img ../$BUILD_NAME-vendor.img vendor.img
+        rm ../$BUILD_NAME-vendor.img
+    fi
     mkdir system
     echo "  Mounting system image."
     sudo mount system.img system
     SYSTEM_MOUNT=/tmp/aospa/$BUILD_NAME/system
+    if [ -f vendor.img ]; then
+        mkdir vendor
+        echo "  Mounting vendor image."
+        sudo mount vendor.img vendor
+        VENDOR_MOUNT=/tmp/aospa/$BUILD_NAME/vendor
+    fi
     sudo chown -R $(id -u):$(id -g) .
     SOURCE=/tmp/aospa/$BUILD_NAME
 fi
@@ -304,6 +318,10 @@ echo "Done with setting up makefiles."
 if [ ! -z "$SYSTEM_MOUNT" ]; then
     echo "  Unmounting system image."
     sudo umount "$SYSTEM_MOUNT"
+fi
+if [ ! -z "$VENDOR_MOUNT" ]; then
+    echo "  Unmounting vendor image."
+    sudo umount "$VENDOR_MOUNT"
 fi
 echo "  Removing temporary files."
 rm -rf /tmp/aospa
