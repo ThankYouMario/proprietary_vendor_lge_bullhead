@@ -187,8 +187,8 @@ echo ""
 
 # Stop preparing and start by removing all old files
 
-echo "Making old files disappear..."
-rm -rf $BLOBS_ROOT/*
+echo "Moving old files out..."
+mv $BLOBS_ROOT /tmp/aospa/oldblobs
 echo ""
 
 # Do the real pulling and copying of files
@@ -208,6 +208,16 @@ for FILE in $(cat $BLOBS_TXT | grep -v -E '^ *(#|$)' | sed 's/^[-\/]*//' | sort 
     if [ -h "$SOURCE/$FILE" ]; then
         FILE=$(readlink -m $SOURCE/$FILE | sed 's/^\/*//')
         FILE_DIR=$(dirname $FILE)
+    fi
+    if [ ! -f "$SOURCE/$FILE" ]; then
+        if [ -f "/tmp/aospa/oldblobs/$FILE" ]; then
+            echo "  Only the old version of $FILE found; reusing."
+            FILE=$(readlink -m /tmp/aospa/oldblobs/$FILE)
+            FILE_DIR=$(dirname $FILE)
+        else
+            echo "  No version of $FILE found; skipping."
+            continue
+        fi
     fi
     cp $SOURCE/$FILE $TARGET_FILE
 
