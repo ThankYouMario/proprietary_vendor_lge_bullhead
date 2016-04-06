@@ -64,7 +64,6 @@ PRODUCT_COPY_FILES += \
     vendor/lge/bullhead/proprietary/system/etc/lowi.conf:system/etc/lowi.conf \
     vendor/lge/bullhead/proprietary/system/etc/permissions/cneapiclient.xml:system/etc/permissions/cneapiclient.xml \
     vendor/lge/bullhead/proprietary/system/etc/permissions/com.android.omadm.service.xml:system/etc/permissions/com.android.omadm.service.xml \
-    vendor/lge/bullhead/proprietary/system/etc/permissions/com.google.widevine.software.drm.xml:system/etc/permissions/com.google.widevine.software.drm.xml \
     vendor/lge/bullhead/proprietary/system/etc/permissions/qcrilhook.xml:system/etc/permissions/qcrilhook.xml \
     vendor/lge/bullhead/proprietary/system/etc/permissions/qti_permissions.xml:system/etc/permissions/qti_permissions.xml \
     vendor/lge/bullhead/proprietary/system/etc/permissions/rcsservice.xml:system/etc/permissions/rcsservice.xml \
