@@ -214,7 +214,9 @@ echo ""
 # Do the real pulling and copying of files
 
 echo "Making new files appear..."
-for FILE in $(cat $BLOBS_TXT | grep -v -E '^ *(#|$)' | sed 's/^[-\/]*//' | sort -s); do
+for REAL_FILE in $(cat $BLOBS_TXT | grep -v -E '^ *(#|$)' | sed 's/^[-\/]*//' | sort -s); do
+    FILE=$REAL_FILE
+
     # Ensure we have a target directory
     FILE_DIR=$(dirname $FILE)
     if [ ! -d "$BLOBS_ROOT/$FILE_DIR" ]; then
@@ -234,8 +236,16 @@ for FILE in $(cat $BLOBS_TXT | grep -v -E '^ *(#|$)' | sed 's/^[-\/]*//' | sort 
             echo "  Only the old version of $FILE found; reusing."
             FILE=$(readlink -m /tmp/aospa/oldblobs/$FILE)
             FILE_DIR=$(dirname $FILE)
-        else
+        elif [ -f "/tmp/aospa/oldblobs/$REAL_FILE" ]; then
+            echo "  Only the old version of $REAL_FILE found; reusing."
+            FILE=$(readlink -m /tmp/aospa/oldblobs/$REAL_FILE)
+            FILE_DIR=$(dirname $FILE)
+        elif [ "$FILE" != "$REAL_FILE" ]; then
             echo "  No version of $FILE found; skipping."
+            # TODO Create symlink from $REAL_FILE to $FILE.
+            continue
+        else
+            echo "  No version of $REAL_FILE found; skipping."
             continue
         fi
     fi
@@ -291,8 +301,10 @@ EOF
 
 echo -n "PRODUCT_COPY_FILES +=" >> $VENDOR_MAKEFILE
 for FILE in $(cat $BLOBS_TXT | grep -v -E '^ *(#|$)' | grep -v -E '\.apk *$' | sed 's/^[-\/]*//' | sort -s); do
-    echo -n " \\
+    if [ -f $BLOBS_ROOT/$FILE ]; then
+        echo -n " \\
     vendor/$VENDOR/$DEVICE/proprietary/$FILE:$FILE" >> $VENDOR_MAKEFILE
+    fi
 done
 echo "" >> $VENDOR_MAKEFILE
 
