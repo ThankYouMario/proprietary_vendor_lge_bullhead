@@ -103,6 +103,10 @@ PRODUCT_COPY_FILES += \
     vendor/lge/bullhead/proprietary/system/lib/libmmjpeg_interface.so:system/lib/libmmjpeg_interface.so \
     vendor/lge/bullhead/proprietary/system/lib/libqomx_core.so:system/lib/libqomx_core.so \
     vendor/lge/bullhead/proprietary/system/lib/soundfx/libfmas.so:system/lib/soundfx/libfmas.so \
+    vendor/lge/bullhead/proprietary/system/priv-app/DMService/lib/arm/libdmengine.so:system/priv-app/DMService/lib/arm/libdmengine.so \
+    vendor/lge/bullhead/proprietary/system/priv-app/DMService/lib/arm/libdmjavaplugin.so:system/priv-app/DMService/lib/arm/libdmjavaplugin.so \
+    vendor/lge/bullhead/proprietary/vendor/app/ims/lib/arm64/libimscamera_jni.so:vendor/app/ims/lib/arm64/libimscamera_jni.so \
+    vendor/lge/bullhead/proprietary/vendor/app/ims/lib/arm64/libimsmedia_jni.so:vendor/app/ims/lib/arm64/libimsmedia_jni.so \
     vendor/lge/bullhead/proprietary/vendor/bin/mm-qcamera-daemon:vendor/bin/mm-qcamera-daemon \
     vendor/lge/bullhead/proprietary/vendor/bin/qseecomd:vendor/bin/qseecomd \
     vendor/lge/bullhead/proprietary/vendor/bin/qti:vendor/bin/qti \
@@ -547,6 +551,7 @@ PRODUCT_PACKAGES += \
     DiagMon \
     DMConfigUpdate \
     DMService \
+    Entitlement \
     HotwordEnrollment \
     LifeTimerService \
     SprintDM \
