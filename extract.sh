@@ -44,14 +44,14 @@ echo "  ANDROID_MAKEFILE=$ANDROID_MAKEFILE"
 echo -n "  BAKSMALI_PATH=$BAKSMALI_PATH"
 if [ ! -f "$BAKSMALI_PATH" ]; then
     echo " (downloading..)"
-    wget --quiet -O $BAKSMALI_PATH 'https://bitbucket.org/JesusFreke/smali/downloads/baksmali-2.1.1.jar'
+    wget --quiet -O $BAKSMALI_PATH 'https://bitbucket.org/JesusFreke/smali/downloads/baksmali-2.1.3.jar'
 else
     echo ""
 fi
 echo -n "  SMALI_PATH=$SMALI_PATH"
 if [ ! -f "$SMALI_PATH" ]; then
     echo " (downloading..)"
-    wget --quiet -O $SMALI_PATH 'https://bitbucket.org/JesusFreke/smali/downloads/smali-2.1.1.jar'
+    wget --quiet -O $SMALI_PATH 'https://bitbucket.org/JesusFreke/smali/downloads/smali-2.1.3.jar'
 else
     echo ""
 fi
@@ -129,7 +129,7 @@ if [ ! -d "$BLOBS_ROOT" ]; then
 fi
 
 if [ -f "$SOURCE" ]; then
-    BUILD_NAME=$(basename "$SOURCE" | sed -r -e 's/(.*-[a-z]{3}[1-9]{2}[a-z])-factory-[1-9a-f]{8}.tgz/\1/')
+    BUILD_NAME=$(basename "$SOURCE" | sed -r -e 's/(.*-[a-z]{3}[0-9]{2}[a-z])-factory-[0-9a-f]{8}.tgz/\1/')
     if [ -z "$BUILD_NAME" ]; then
         echo ""
         echo "    $SCRIPT_NAME: unable to parse build ID"
@@ -367,6 +367,8 @@ if [ ! -z "$VENDOR_MOUNT" ]; then
 fi
 echo "  Removing temporary files."
 rm -rf /tmp/aospa
+rm -f $BAKSMALI_PATH
+rm -f $SMALI_PATH
 echo ""
 
 # Let the user know what the fingerprint is so that it can be updated as well
