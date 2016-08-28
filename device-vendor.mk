@@ -23,7 +23,6 @@ PRODUCT_COPY_FILES += \
     vendor/lge/bullhead/proprietary/system/bin/cnd:system/bin/cnd \
     vendor/lge/bullhead/proprietary/system/bin/cnss-daemon:system/bin/cnss-daemon \
     vendor/lge/bullhead/proprietary/system/bin/fingerprintd:system/bin/fingerprintd \
-    vendor/lge/bullhead/proprietary/system/bin/imscmservice:system/bin/imscmservice \
     vendor/lge/bullhead/proprietary/system/bin/imsdatadaemon:system/bin/imsdatadaemon \
     vendor/lge/bullhead/proprietary/system/bin/imsqmidaemon:system/bin/imsqmidaemon \
     vendor/lge/bullhead/proprietary/system/bin/ims_rtp_daemon:system/bin/ims_rtp_daemon \
@@ -75,29 +74,31 @@ PRODUCT_COPY_FILES += \
     vendor/lge/bullhead/proprietary/system/framework/qcrilhook.jar:system/framework/qcrilhook.jar \
     vendor/lge/bullhead/proprietary/system/framework/rcsimssettings.jar:system/framework/rcsimssettings.jar \
     vendor/lge/bullhead/proprietary/system/framework/rcsservice.jar:system/framework/rcsservice.jar \
+    vendor/lge/bullhead/proprietary/system/lib64/hw/activity_recognition.bullhead.so:system/lib64/hw/activity_recognition.bullhead.so \
     vendor/lge/bullhead/proprietary/system/lib64/hw/audio.primary.msm8992.so:system/lib64/hw/audio.primary.msm8992.so \
     vendor/lge/bullhead/proprietary/system/lib64/hw/fingerprint.bullhead.so:system/lib64/hw/fingerprint.bullhead.so \
     vendor/lge/bullhead/proprietary/system/lib64/hw/gps.msm8992.so:system/lib64/hw/gps.msm8992.so \
     vendor/lge/bullhead/proprietary/system/lib64/hw/nfc_nci.bullhead.so:system/lib64/hw/nfc_nci.bullhead.so \
+    vendor/lge/bullhead/proprietary/system/lib64/hw/sensors.bullhead.so:system/lib64/hw/sensors.bullhead.so \
     vendor/lge/bullhead/proprietary/system/lib64/lib_fpc_tac_shared.so:system/lib64/lib_fpc_tac_shared.so \
     vendor/lge/bullhead/proprietary/system/lib64/libgps.utils.so:system/lib64/libgps.utils.so \
-    vendor/lge/bullhead/proprietary/system/lib64/libloc_api_v02.so:system/lib64/libloc_api_v02.so \
+    vendor/lge/bullhead/proprietary/system/lib64/libhubconnection.so:system/lib64/libhubconnection.so \
     vendor/lge/bullhead/proprietary/system/lib64/libloc_core.so:system/lib64/libloc_core.so \
-    vendor/lge/bullhead/proprietary/system/lib64/libloc_ds_api.so:system/lib64/libloc_ds_api.so \
     vendor/lge/bullhead/proprietary/system/lib64/libloc_eng.so:system/lib64/libloc_eng.so \
+    vendor/lge/bullhead/proprietary/system/lib/hw/activity_recognition.bullhead.so:system/lib/hw/activity_recognition.bullhead.so \
     vendor/lge/bullhead/proprietary/system/lib/hw/audio.primary.msm8992.so:system/lib/hw/audio.primary.msm8992.so \
     vendor/lge/bullhead/proprietary/system/lib/hw/camera.msm8992.so:system/lib/hw/camera.msm8992.so \
     vendor/lge/bullhead/proprietary/system/lib/hw/fingerprint.bullhead.so:system/lib/hw/fingerprint.bullhead.so \
     vendor/lge/bullhead/proprietary/system/lib/hw/gps.msm8992.so:system/lib/hw/gps.msm8992.so \
     vendor/lge/bullhead/proprietary/system/lib/hw/local_time.default.so:system/lib/hw/local_time.default.so \
     vendor/lge/bullhead/proprietary/system/lib/hw/nfc_nci.bullhead.so:system/lib/hw/nfc_nci.bullhead.so \
+    vendor/lge/bullhead/proprietary/system/lib/hw/sensors.bullhead.so:system/lib/hw/sensors.bullhead.so \
     vendor/lge/bullhead/proprietary/system/lib/libdmengine.so:system/lib/libdmengine.so \
     vendor/lge/bullhead/proprietary/system/lib/libdmjavaplugin.so:system/lib/libdmjavaplugin.so \
     vendor/lge/bullhead/proprietary/system/lib/lib_fpc_tac_shared.so:system/lib/lib_fpc_tac_shared.so \
     vendor/lge/bullhead/proprietary/system/lib/libgps.utils.so:system/lib/libgps.utils.so \
-    vendor/lge/bullhead/proprietary/system/lib/libloc_api_v02.so:system/lib/libloc_api_v02.so \
+    vendor/lge/bullhead/proprietary/system/lib/libhubconnection.so:system/lib/libhubconnection.so \
     vendor/lge/bullhead/proprietary/system/lib/libloc_core.so:system/lib/libloc_core.so \
-    vendor/lge/bullhead/proprietary/system/lib/libloc_ds_api.so:system/lib/libloc_ds_api.so \
     vendor/lge/bullhead/proprietary/system/lib/libloc_eng.so:system/lib/libloc_eng.so \
     vendor/lge/bullhead/proprietary/system/lib/libmmcamera_interface.so:system/lib/libmmcamera_interface.so \
     vendor/lge/bullhead/proprietary/system/lib/libmmjpeg_interface.so:system/lib/libmmjpeg_interface.so \
@@ -110,7 +111,6 @@ PRODUCT_COPY_FILES += \
     vendor/lge/bullhead/proprietary/vendor/bin/mm-qcamera-daemon:vendor/bin/mm-qcamera-daemon \
     vendor/lge/bullhead/proprietary/vendor/bin/qseecomd:vendor/bin/qseecomd \
     vendor/lge/bullhead/proprietary/vendor/bin/qti:vendor/bin/qti \
-    vendor/lge/bullhead/proprietary/vendor/bin/sensortool.bullhead:vendor/bin/sensortool.bullhead \
     vendor/lge/bullhead/proprietary/vendor/bin/slim_daemon:vendor/bin/slim_daemon \
     vendor/lge/bullhead/proprietary/vendor/etc/audio_effects.conf:vendor/etc/audio_effects.conf \
     vendor/lge/bullhead/proprietary/vendor/etc/msm_irqbalance.conf:vendor/etc/msm_irqbalance.conf \
@@ -165,7 +165,6 @@ PRODUCT_COPY_FILES += \
     vendor/lge/bullhead/proprietary/vendor/firmware/leia_pfp_470.fw:vendor/firmware/leia_pfp_470.fw \
     vendor/lge/bullhead/proprietary/vendor/firmware/leia_pm4_470.fw:vendor/firmware/leia_pm4_470.fw \
     vendor/lge/bullhead/proprietary/vendor/firmware/libpn548ad_fw.so:vendor/firmware/libpn548ad_fw.so \
-    vendor/lge/bullhead/proprietary/vendor/firmware/nano4x1.bin:vendor/firmware/nano4x1.bin \
     vendor/lge/bullhead/proprietary/vendor/firmware/otp30.bin:vendor/firmware/otp30.bin \
     vendor/lge/bullhead/proprietary/vendor/firmware/qwlan30.bin:vendor/firmware/qwlan30.bin \
     vendor/lge/bullhead/proprietary/vendor/firmware/synaptics_fw.bin:vendor/firmware/synaptics_fw.bin \
@@ -188,11 +187,9 @@ PRODUCT_COPY_FILES += \
     vendor/lge/bullhead/proprietary/vendor/lib64/egl/libGLESv2_adreno.so:vendor/lib64/egl/libGLESv2_adreno.so \
     vendor/lge/bullhead/proprietary/vendor/lib64/egl/libq3dtools_adreno.so:vendor/lib64/egl/libq3dtools_adreno.so \
     vendor/lge/bullhead/proprietary/vendor/lib64/egl/libq3dtools_esx.so:vendor/lib64/egl/libq3dtools_esx.so \
-    vendor/lge/bullhead/proprietary/vendor/lib64/hw/activity_recognition.bullhead.so:vendor/lib64/hw/activity_recognition.bullhead.so \
     vendor/lge/bullhead/proprietary/vendor/lib64/hw/flp.default.so:vendor/lib64/hw/flp.default.so \
     vendor/lge/bullhead/proprietary/vendor/lib64/hw/gatekeeper.msm8992.so:vendor/lib64/hw/gatekeeper.msm8992.so \
     vendor/lge/bullhead/proprietary/vendor/lib64/hw/keystore.msm8992.so:vendor/lib64/hw/keystore.msm8992.so \
-    vendor/lge/bullhead/proprietary/vendor/lib64/hw/sensors.bullhead.so:vendor/lib64/hw/sensors.bullhead.so \
     vendor/lge/bullhead/proprietary/vendor/lib64/libacdb-fts.so:vendor/lib64/libacdb-fts.so \
     vendor/lge/bullhead/proprietary/vendor/lib64/libacdbloader.so:vendor/lib64/libacdbloader.so \
     vendor/lge/bullhead/proprietary/vendor/lib64/libacdbmapper.so:vendor/lib64/libacdbmapper.so \
@@ -222,7 +219,6 @@ PRODUCT_COPY_FILES += \
     vendor/lge/bullhead/proprietary/vendor/lib64/libfrsdk.so:vendor/lib64/libfrsdk.so \
     vendor/lge/bullhead/proprietary/vendor/lib64/libgeofence.so:vendor/lib64/libgeofence.so \
     vendor/lge/bullhead/proprietary/vendor/lib64/libgsl.so:vendor/lib64/libgsl.so \
-    vendor/lge/bullhead/proprietary/vendor/lib64/libhubconnection.so:vendor/lib64/libhubconnection.so \
     vendor/lge/bullhead/proprietary/vendor/lib64/libidl.so:vendor/lib64/libidl.so \
     vendor/lge/bullhead/proprietary/vendor/lib64/libimscamera_jni.so:vendor/lib64/libimscamera_jni.so \
     vendor/lge/bullhead/proprietary/vendor/lib64/lib-imsdpl.so:vendor/lib64/lib-imsdpl.so \
@@ -302,10 +298,8 @@ PRODUCT_COPY_FILES += \
     vendor/lge/bullhead/proprietary/vendor/lib/egl/libGLESv2_adreno.so:vendor/lib/egl/libGLESv2_adreno.so \
     vendor/lge/bullhead/proprietary/vendor/lib/egl/libq3dtools_adreno.so:vendor/lib/egl/libq3dtools_adreno.so \
     vendor/lge/bullhead/proprietary/vendor/lib/egl/libq3dtools_esx.so:vendor/lib/egl/libq3dtools_esx.so \
-    vendor/lge/bullhead/proprietary/vendor/lib/hw/activity_recognition.bullhead.so:vendor/lib/hw/activity_recognition.bullhead.so \
     vendor/lge/bullhead/proprietary/vendor/lib/hw/gatekeeper.msm8992.so:vendor/lib/hw/gatekeeper.msm8992.so \
     vendor/lge/bullhead/proprietary/vendor/lib/hw/keystore.msm8992.so:vendor/lib/hw/keystore.msm8992.so \
-    vendor/lge/bullhead/proprietary/vendor/lib/hw/sensors.bullhead.so:vendor/lib/hw/sensors.bullhead.so \
     vendor/lge/bullhead/proprietary/vendor/lib/hw/sound_trigger.primary.msm8992.so:vendor/lib/hw/sound_trigger.primary.msm8992.so \
     vendor/lge/bullhead/proprietary/vendor/lib/hw/tof.vl6180.so:vendor/lib/hw/tof.vl6180.so \
     vendor/lge/bullhead/proprietary/vendor/lib/libacdb-fts.so:vendor/lib/libacdb-fts.so \
@@ -372,7 +366,6 @@ PRODUCT_COPY_FILES += \
     vendor/lge/bullhead/proprietary/vendor/lib/libgoog_eis_armeabi-v7a.so:vendor/lib/libgoog_eis_armeabi-v7a.so \
     vendor/lge/bullhead/proprietary/vendor/lib/libgoog_rownr.so:vendor/lib/libgoog_rownr.so \
     vendor/lge/bullhead/proprietary/vendor/lib/libgsl.so:vendor/lib/libgsl.so \
-    vendor/lge/bullhead/proprietary/vendor/lib/libhubconnection.so:vendor/lib/libhubconnection.so \
     vendor/lge/bullhead/proprietary/vendor/lib/libidl.so:vendor/lib/libidl.so \
     vendor/lge/bullhead/proprietary/vendor/lib/libimscamera_jni.so:vendor/lib/libimscamera_jni.so \
     vendor/lge/bullhead/proprietary/vendor/lib/lib-imsdpl.so:vendor/lib/lib-imsdpl.so \
@@ -526,25 +519,14 @@ PRODUCT_COPY_FILES += \
     vendor/lge/bullhead/proprietary/vendor/lib/mediadrm/libwvdrmengine.so:vendor/lib/mediadrm/libwvdrmengine.so \
     vendor/lge/bullhead/proprietary/vendor/lib/rfsa/adsp/fastrpc_shell_0:vendor/lib/rfsa/adsp/fastrpc_shell_0 \
     vendor/lge/bullhead/proprietary/vendor/media/LMspeed_508.emd:vendor/media/LMspeed_508.emd \
-    vendor/lge/bullhead/proprietary/vendor/media/PFFprec_600.emd:vendor/media/PFFprec_600.emd \
-    vendor/lge/bullhead/proprietary/vendor/pittpatt/models/detection/multi_pose_face_landmark_detectors.8/landmark_group_meta_data.bin:vendor/pittpatt/models/detection/multi_pose_face_landmark_detectors.8/landmark_group_meta_data.bin \
-    vendor/lge/bullhead/proprietary/vendor/pittpatt/models/detection/multi_pose_face_landmark_detectors.8/left_eye-y0-yi45-p0-pi45-r0-ri20.lg_32-tree7-wmd.bin:vendor/pittpatt/models/detection/multi_pose_face_landmark_detectors.8/left_eye-y0-yi45-p0-pi45-r0-ri20.lg_32-tree7-wmd.bin \
-    vendor/lge/bullhead/proprietary/vendor/pittpatt/models/detection/multi_pose_face_landmark_detectors.8/nose_base-y0-yi45-p0-pi45-r0-ri20.lg_32-tree7-wmd.bin:vendor/pittpatt/models/detection/multi_pose_face_landmark_detectors.8/nose_base-y0-yi45-p0-pi45-r0-ri20.lg_32-tree7-wmd.bin \
-    vendor/lge/bullhead/proprietary/vendor/pittpatt/models/detection/multi_pose_face_landmark_detectors.8/right_eye-y0-yi45-p0-pi45-r0-ri20.lg_32-3-tree7-wmd.bin:vendor/pittpatt/models/detection/multi_pose_face_landmark_detectors.8/right_eye-y0-yi45-p0-pi45-r0-ri20.lg_32-3-tree7-wmd.bin \
-    vendor/lge/bullhead/proprietary/vendor/pittpatt/models/detection/yaw_roll_face_detectors.7.1/head-y0-yi45-p0-pi45-r0-ri30.4a-v24-tree7-2-wmd.bin:vendor/pittpatt/models/detection/yaw_roll_face_detectors.7.1/head-y0-yi45-p0-pi45-r0-ri30.4a-v24-tree7-2-wmd.bin \
-    vendor/lge/bullhead/proprietary/vendor/pittpatt/models/detection/yaw_roll_face_detectors.7.1/head-y0-yi45-p0-pi45-rn30-ri30.5-v24-tree7-2-wmd.bin:vendor/pittpatt/models/detection/yaw_roll_face_detectors.7.1/head-y0-yi45-p0-pi45-rn30-ri30.5-v24-tree7-2-wmd.bin \
-    vendor/lge/bullhead/proprietary/vendor/pittpatt/models/detection/yaw_roll_face_detectors.7.1/head-y0-yi45-p0-pi45-rp30-ri30.5-v24-tree7-2-wmd.bin:vendor/pittpatt/models/detection/yaw_roll_face_detectors.7.1/head-y0-yi45-p0-pi45-rp30-ri30.5-v24-tree7-2-wmd.bin \
-    vendor/lge/bullhead/proprietary/vendor/pittpatt/models/detection/yaw_roll_face_detectors.7.1/pose-r.8.1.bin:vendor/pittpatt/models/detection/yaw_roll_face_detectors.7.1/pose-r.8.1.bin \
-    vendor/lge/bullhead/proprietary/vendor/pittpatt/models/detection/yaw_roll_face_detectors.7.1/pose-y-r.8.1.bin:vendor/pittpatt/models/detection/yaw_roll_face_detectors.7.1/pose-y-r.8.1.bin \
-    vendor/lge/bullhead/proprietary/vendor/pittpatt/models/recognition/face.face.y0-y0-71-N-tree_7-wmd.bin:vendor/pittpatt/models/recognition/face.face.y0-y0-71-N-tree_7-wmd.bin
+    vendor/lge/bullhead/proprietary/vendor/media/PFFprec_600.emd:vendor/media/PFFprec_600.emd
 
 PRODUCT_PACKAGES += \
-    atfwd \
     HiddenMenu \
-    qcrilmsgtunnel \
     RCSBootstraputil \
     RcsImsBootstraputil \
     TimeService \
+    atfwd \
     CNEService \
     ConnMO \
     DCMO \
@@ -554,6 +536,7 @@ PRODUCT_PACKAGES += \
     Entitlement \
     HotwordEnrollment \
     LifeTimerService \
+    qcrilmsgtunnel \
     SprintDM \
     datastatusnotification \
     ims
