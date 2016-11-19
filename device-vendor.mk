@@ -98,6 +98,7 @@ PRODUCT_COPY_FILES += \
     vendor/lge/bullhead/proprietary/system/lib/libloc_ds_api.so:system/lib/libloc_ds_api.so \
     vendor/lge/bullhead/proprietary/system/lib/libloc_eng.so:system/lib/libloc_eng.so \
     vendor/lge/bullhead/proprietary/system/lib/libmmcamera_interface.so:system/lib/libmmcamera_interface.so \
+    vendor/lge/bullhead/proprietary/system/lib/libmmjpeg_interface.so:system/lib/libmmjpeg_interface.so \
     vendor/lge/bullhead/proprietary/system/lib/libqomx_core.so:system/lib/libqomx_core.so \
     vendor/lge/bullhead/proprietary/system/lib/soundfx/libfmas.so:system/lib/soundfx/libfmas.so \
     vendor/lge/bullhead/proprietary/system/priv-app/DMService/lib/arm/libdmengine.so:system/priv-app/DMService/lib/arm/libdmengine.so \
