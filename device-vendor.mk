@@ -17,8 +17,6 @@
 # An overlay for features that depend on proprietary files
 DEVICE_PACKAGE_OVERLAYS := vendor/lge/bullhead/overlay
 
-BOARD_PREBUILT_VENDORIMAGE := proprietary/vendor.img
-
 PRODUCT_COPY_FILES += \
     vendor/lge/bullhead/proprietary/system/bin/ATFWD-daemon:system/bin/ATFWD-daemon \
     vendor/lge/bullhead/proprietary/system/bin/btnvtool:system/bin/btnvtool \

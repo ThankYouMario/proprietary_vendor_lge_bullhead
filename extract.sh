@@ -346,8 +346,9 @@ endif" >> $ANDROID_MAKEFILE
     echo "" >> $VENDOR_MAKEFILE
 fi
 
-# Throw in an additional empty board configuration
+# Throw in our prebuilt vendor image override
 
+echo "BOARD_PREBUILT_VENDORIMAGE := vendor/lge/bullhead/proprietary/vendor.img" >> $REPO_ROOT/BoardConfigVendor.mk
 (cat << EOF) > $REPO_ROOT/BoardConfigVendor.mk
 $HEADER
 EOF
