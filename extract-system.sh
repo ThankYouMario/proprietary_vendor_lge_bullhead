@@ -34,7 +34,7 @@ mkdir /tmp/aospa
 # Follow up with even more generic configuration
 
 BLOBS_ROOT=$REPO_ROOT/proprietary
-VENDOR_MAKEFILE=$REPO_ROOT/device-vendor.mk
+VENDOR_MAKEFILE=$REPO_ROOT/device-system.mk
 ANDROID_MAKEFILE=$REPO_ROOT/Android.mk
 BAKSMALI_PATH=$REPO_ROOT/baksmali.jar
 SMALI_PATH=$REPO_ROOT/smali.jar
@@ -346,14 +346,9 @@ endif" >> $ANDROID_MAKEFILE
     echo "" >> $VENDOR_MAKEFILE
 fi
 
-# Throw in our prebuilt vendor image override
-
-echo "BOARD_PREBUILT_VENDORIMAGE := vendor/lge/bullhead/proprietary/vendor.img" >> $REPO_ROOT/BoardConfigVendor.mk
-(cat << EOF) > $REPO_ROOT/BoardConfigVendor.mk
-$HEADER
-EOF
-
-echo ""
+# Inherit blobs from vendor partition if present
+echo "-include vendor/$VENDOR/$DEVICE/device-vendor.mk" >> $VENDOR_MAKEFILE
+echo "" >> $VENDOR_MAKEFILE
 
 # Let the user know we performed well and finished nicely
 
