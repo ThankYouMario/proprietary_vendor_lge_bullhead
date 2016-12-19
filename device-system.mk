@@ -118,5 +118,3 @@ PRODUCT_PACKAGES += \
     LifeTimerService \
     qcrilmsgtunnel \
     SprintDM
-
--include vendor/lge/bullhead/device-vendor.mk

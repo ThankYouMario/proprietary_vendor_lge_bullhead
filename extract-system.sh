@@ -346,10 +346,6 @@ endif" >> $ANDROID_MAKEFILE
     echo "" >> $VENDOR_MAKEFILE
 fi
 
-# Inherit blobs from vendor partition if present
-echo "-include vendor/$VENDOR/$DEVICE/device-vendor.mk" >> $VENDOR_MAKEFILE
-echo "" >> $VENDOR_MAKEFILE
-
 # Let the user know we performed well and finished nicely
 
 echo "Done with setting up makefiles."
