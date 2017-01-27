@@ -143,6 +143,9 @@ PRODUCT_COPY_FILES += \
     vendor/lge/bullhead/proprietary/vendor/lib/libadpcmdec.so:vendor/lib/libadpcmdec.so \
     vendor/lge/bullhead/proprietary/vendor/lib/libadreno_utils.so:vendor/lib/libadreno_utils.so \
     vendor/lge/bullhead/proprietary/vendor/lib/libadsprpc.so:vendor/lib/libadsprpc.so \
+    vendor/lge/bullhead/proprietary/vendor/lib/libaptX-1.0.0-rel-Android21-ARMv7A.so:vendor/lib/libaptX-1.0.0-rel-Android21-ARMv7A.so \
+    vendor/lge/bullhead/proprietary/vendor/lib/libaptXHD-1.0.0-rel-Android21-ARMv7A.so:vendor/lib/libaptXHD-1.0.0-rel-Android21-ARMv7A.so \
+    vendor/lge/bullhead/proprietary/vendor/lib/libaptXScheduler.so:vendor/lib/libaptXScheduler.so \
     vendor/lge/bullhead/proprietary/vendor/lib/libaudcal.so:vendor/lib/libaudcal.so \
     vendor/lge/bullhead/proprietary/vendor/lib/libaudioalsa.so:vendor/lib/libaudioalsa.so \
     vendor/lge/bullhead/proprietary/vendor/lib/libbccQTI.so:vendor/lib/libbccQTI.so \
