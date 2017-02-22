@@ -29,7 +29,7 @@ if [ "$KERNEL_NAME" = "Linux" ]; then
 fi
 echo "# REPO_ROOT=$REPO_ROOT"
 rm -rf /tmp/aospa
-mkdir /tmp/aospa
+mkdir -p /tmp/aospa/oldblobs/system
 
 # Follow up with even more generic configuration
 
@@ -208,7 +208,7 @@ echo ""
 # Stop preparing and start by removing all old files
 
 echo "Moving old files out..."
-mv $BLOBS_ROOT /tmp/aospa/oldblobs
+mv $BLOBS_ROOT/system /tmp/aospa/oldblobs/system
 echo ""
 
 # Do the real pulling and copying of files
