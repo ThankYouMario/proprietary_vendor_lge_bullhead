@@ -442,3 +442,7 @@ PRODUCT_COPY_FILES += \
     vendor/lge/bullhead/proprietary/vendor/lib64/mediadrm/libdrmclearkeyplugin.so:vendor/lib64/mediadrm/libdrmclearkeyplugin.so \
     vendor/lge/bullhead/proprietary/vendor/media/LMspeed_508.emd:vendor/media/LMspeed_508.emd \
     vendor/lge/bullhead/proprietary/vendor/media/PFFprec_600.emd:vendor/media/PFFprec_600.emd
+
+PRODUCT_PACKAGES += \
+    datastatusnotification \
+    ims
