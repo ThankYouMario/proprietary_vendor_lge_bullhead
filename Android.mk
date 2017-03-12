@@ -121,6 +121,7 @@ LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
 LOCAL_MODULE_TAGS := optional
 LOCAL_CERTIFICATE := platform
 LOCAL_PRIVILEGED_MODULE := true
+LOCAL_DEX_PREOPT := false
 LOCAL_SRC_FILES := proprietary/system/priv-app/DMService/DMService.apk
 include $(BUILD_PREBUILT)
 
