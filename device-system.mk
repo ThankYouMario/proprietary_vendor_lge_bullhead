@@ -1,4 +1,4 @@
-# Copyright 2016 ParanoidAndroid Project
+# Copyright 2017 ParanoidAndroid Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -22,6 +22,8 @@ PRODUCT_COPY_FILES += \
     vendor/lge/bullhead/proprietary/system/bin/btnvtool:system/bin/btnvtool \
     vendor/lge/bullhead/proprietary/system/bin/cnd:system/bin/cnd \
     vendor/lge/bullhead/proprietary/system/bin/cnss-daemon:system/bin/cnss-daemon \
+    vendor/lge/bullhead/proprietary/system/bin/diag_klog:system/bin/diag_klog \
+    vendor/lge/bullhead/proprietary/system/bin/diag_mdlog:system/bin/diag_mdlog \
     vendor/lge/bullhead/proprietary/system/bin/fingerprintd:system/bin/fingerprintd \
     vendor/lge/bullhead/proprietary/system/bin/imsdatadaemon:system/bin/imsdatadaemon \
     vendor/lge/bullhead/proprietary/system/bin/imsqmidaemon:system/bin/imsqmidaemon \
@@ -56,6 +58,9 @@ PRODUCT_COPY_FILES += \
     vendor/lge/bullhead/proprietary/system/etc/data/dsi_config.xml:system/etc/data/dsi_config.xml \
     vendor/lge/bullhead/proprietary/system/etc/data/netmgr_config.xml:system/etc/data/netmgr_config.xml \
     vendor/lge/bullhead/proprietary/system/etc/data/qmi_config.xml:system/etc/data/qmi_config.xml \
+    vendor/lge/bullhead/proprietary/system/etc/diag/Bullhead_radio-general.cfg:system/etc/diag/Bullhead_radio-general.cfg \
+    vendor/lge/bullhead/proprietary/system/etc/diag/ims_epdg.cfg:system/etc/diag/ims_epdg.cfg \
+    vendor/lge/bullhead/proprietary/system/etc/diag/wlan.cfg:system/etc/diag/wlan.cfg \
     vendor/lge/bullhead/proprietary/system/etc/flp.conf:system/etc/flp.conf \
     vendor/lge/bullhead/proprietary/system/etc/izat.conf:system/etc/izat.conf \
     vendor/lge/bullhead/proprietary/system/etc/lowi.conf:system/etc/lowi.conf \
@@ -85,7 +90,6 @@ PRODUCT_COPY_FILES += \
     vendor/lge/bullhead/proprietary/system/lib/hw/activity_recognition.bullhead.so:system/lib/hw/activity_recognition.bullhead.so \
     vendor/lge/bullhead/proprietary/system/lib/hw/fingerprint.bullhead.so:system/lib/hw/fingerprint.bullhead.so \
     vendor/lge/bullhead/proprietary/system/lib/hw/gps.msm8992.so:system/lib/hw/gps.msm8992.so \
-    vendor/lge/bullhead/proprietary/system/lib/hw/local_time.default.so:system/lib/hw/local_time.default.so \
     vendor/lge/bullhead/proprietary/system/lib/hw/nfc_nci.bullhead.so:system/lib/hw/nfc_nci.bullhead.so \
     vendor/lge/bullhead/proprietary/system/lib/libdmengine.so:system/lib/libdmengine.so \
     vendor/lge/bullhead/proprietary/system/lib/libdmjavaplugin.so:system/lib/libdmjavaplugin.so \
@@ -95,7 +99,6 @@ PRODUCT_COPY_FILES += \
     vendor/lge/bullhead/proprietary/system/lib/libloc_core.so:system/lib/libloc_core.so \
     vendor/lge/bullhead/proprietary/system/lib/libloc_ds_api.so:system/lib/libloc_ds_api.so \
     vendor/lge/bullhead/proprietary/system/lib/libloc_eng.so:system/lib/libloc_eng.so \
-    vendor/lge/bullhead/proprietary/system/lib/libmmcamera_interface.so:system/lib/libmmcamera_interface.so \
     vendor/lge/bullhead/proprietary/system/lib/soundfx/libfmas.so:system/lib/soundfx/libfmas.so \
     vendor/lge/bullhead/proprietary/system/priv-app/DMService/lib/arm/libdmengine.so:system/priv-app/DMService/lib/arm/libdmengine.so \
     vendor/lge/bullhead/proprietary/system/priv-app/DMService/lib/arm/libdmjavaplugin.so:system/priv-app/DMService/lib/arm/libdmjavaplugin.so
