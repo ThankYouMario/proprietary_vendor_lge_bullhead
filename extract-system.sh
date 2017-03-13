@@ -265,8 +265,8 @@ for REAL_FILE in $(cat $BLOBS_TXT | grep -v -E '^ *(#|$)' | sed 's/^[-\/]*//' | 
         fi
 
         if [ -f "$OAT_FILE" ] && [ -d "$BOOT_DIR" ]; then
-            java -jar $BAKSMALI_PATH deodex -o /tmp/aospa/dex -c boot.oat -d $BOOT_DIR $OAT_FILE
-            java -jar $SMALI_PATH assemble -o /tmp/aospa/classes.dex /tmp/aospa/dex
+            java -jar $BAKSMALI_PATH -deodex -o /tmp/aospa/dex -c boot.oat -d $BOOT_DIR $OAT_FILE
+            java -jar $SMALI_PATH -o /tmp/aospa/classes.dex /tmp/aospa/dex
             rm -rf /tmp/aospa/dex
             zip -gjq $TARGET_FILE /tmp/aospa/classes.dex
             rm -f /tmp/aospa/classes.dex
@@ -333,6 +333,7 @@ LOCAL_MODULE := $APK_NAME
 LOCAL_MODULE_CLASS := APPS
 LOCAL_MODULE_SUFFIX := \$(COMMON_ANDROID_PACKAGE_SUFFIX)
 LOCAL_MODULE_TAGS := optional
+LOCAL_DEX_PREOPT := false
 LOCAL_CERTIFICATE := platform" >> $ANDROID_MAKEFILE
     if [[ "$FILE" =~ "system/priv-app/".* ]]; then
         echo "LOCAL_PRIVILEGED_MODULE := true" >> $ANDROID_MAKEFILE
