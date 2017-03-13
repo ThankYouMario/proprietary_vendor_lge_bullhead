@@ -24,6 +24,7 @@ LOCAL_MODULE_CLASS := APPS
 LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
 LOCAL_MODULE_TAGS := optional
 LOCAL_CERTIFICATE := platform
+LOCAL_DEX_PREOPT := false
 LOCAL_SRC_FILES := proprietary/system/app/HiddenMenu/HiddenMenu.apk
 include $(BUILD_PREBUILT)
 
@@ -33,6 +34,7 @@ LOCAL_MODULE_CLASS := APPS
 LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
 LOCAL_MODULE_TAGS := optional
 LOCAL_CERTIFICATE := platform
+LOCAL_DEX_PREOPT := false
 LOCAL_SRC_FILES := proprietary/system/app/RCSBootstraputil/RCSBootstraputil.apk
 include $(BUILD_PREBUILT)
 
@@ -42,6 +44,7 @@ LOCAL_MODULE_CLASS := APPS
 LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
 LOCAL_MODULE_TAGS := optional
 LOCAL_CERTIFICATE := platform
+LOCAL_DEX_PREOPT := false
 LOCAL_SRC_FILES := proprietary/system/app/RcsImsBootstraputil/RcsImsBootstraputil.apk
 include $(BUILD_PREBUILT)
 
@@ -51,6 +54,7 @@ LOCAL_MODULE_CLASS := APPS
 LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
 LOCAL_MODULE_TAGS := optional
 LOCAL_CERTIFICATE := platform
+LOCAL_DEX_PREOPT := false
 LOCAL_SRC_FILES := proprietary/system/app/TimeService/TimeService.apk
 include $(BUILD_PREBUILT)
 
@@ -61,6 +65,7 @@ LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
 LOCAL_MODULE_TAGS := optional
 LOCAL_CERTIFICATE := platform
 LOCAL_PRIVILEGED_MODULE := true
+LOCAL_DEX_PREOPT := false
 LOCAL_SRC_FILES := proprietary/system/priv-app/atfwd/atfwd.apk
 include $(BUILD_PREBUILT)
 
@@ -81,6 +86,7 @@ LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
 LOCAL_MODULE_TAGS := optional
 LOCAL_CERTIFICATE := platform
 LOCAL_PRIVILEGED_MODULE := true
+LOCAL_DEX_PREOPT := false
 LOCAL_SRC_FILES := proprietary/system/priv-app/ConnMO/ConnMO.apk
 include $(BUILD_PREBUILT)
 
@@ -91,6 +97,7 @@ LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
 LOCAL_MODULE_TAGS := optional
 LOCAL_CERTIFICATE := platform
 LOCAL_PRIVILEGED_MODULE := true
+LOCAL_DEX_PREOPT := false
 LOCAL_SRC_FILES := proprietary/system/priv-app/DCMO/DCMO.apk
 include $(BUILD_PREBUILT)
 
@@ -101,6 +108,7 @@ LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
 LOCAL_MODULE_TAGS := optional
 LOCAL_CERTIFICATE := platform
 LOCAL_PRIVILEGED_MODULE := true
+LOCAL_DEX_PREOPT := false
 LOCAL_SRC_FILES := proprietary/system/priv-app/DiagMon/DiagMon.apk
 include $(BUILD_PREBUILT)
 
@@ -111,6 +119,7 @@ LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
 LOCAL_MODULE_TAGS := optional
 LOCAL_CERTIFICATE := platform
 LOCAL_PRIVILEGED_MODULE := true
+LOCAL_DEX_PREOPT := false
 LOCAL_SRC_FILES := proprietary/system/priv-app/DMConfigUpdate/DMConfigUpdate.apk
 include $(BUILD_PREBUILT)
 
@@ -140,8 +149,9 @@ LOCAL_MODULE := HotwordEnrollment
 LOCAL_MODULE_CLASS := APPS
 LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
 LOCAL_MODULE_TAGS := optional
-LOCAL_CERTIFICATE := platform
+LOCAL_CERTIFICATE := PRESIGNED
 LOCAL_PRIVILEGED_MODULE := true
+LOCAL_DEX_PREOPT := false
 LOCAL_SRC_FILES := proprietary/system/priv-app/HotwordEnrollment/HotwordEnrollment.apk
 include $(BUILD_PREBUILT)
 
@@ -152,6 +162,7 @@ LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
 LOCAL_MODULE_TAGS := optional
 LOCAL_CERTIFICATE := platform
 LOCAL_PRIVILEGED_MODULE := true
+LOCAL_DEX_PREOPT := false
 LOCAL_SRC_FILES := proprietary/system/priv-app/LifeTimerService/LifeTimerService.apk
 include $(BUILD_PREBUILT)
 
@@ -162,6 +173,7 @@ LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
 LOCAL_MODULE_TAGS := optional
 LOCAL_CERTIFICATE := platform
 LOCAL_PRIVILEGED_MODULE := true
+LOCAL_DEX_PREOPT := false
 LOCAL_SRC_FILES := proprietary/system/priv-app/qcrilmsgtunnel/qcrilmsgtunnel.apk
 include $(BUILD_PREBUILT)
 
@@ -172,6 +184,7 @@ LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
 LOCAL_MODULE_TAGS := optional
 LOCAL_CERTIFICATE := platform
 LOCAL_PRIVILEGED_MODULE := true
+LOCAL_DEX_PREOPT := false
 LOCAL_SRC_FILES := proprietary/system/priv-app/SprintDM/SprintDM.apk
 include $(BUILD_PREBUILT)
 
@@ -185,6 +198,7 @@ LOCAL_MODULE_CLASS := APPS
 LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
 LOCAL_MODULE_TAGS := optional
 LOCAL_CERTIFICATE := platform
+LOCAL_DEX_PREOPT := false
 LOCAL_SRC_FILES := proprietary/vendor/app/datastatusnotification/datastatusnotification.apk
 include $(BUILD_PREBUILT)
 
@@ -194,6 +208,7 @@ LOCAL_MODULE_CLASS := APPS
 LOCAL_MODULE_SUFFIX := $(COMMON_ANDROID_PACKAGE_SUFFIX)
 LOCAL_MODULE_TAGS := optional
 LOCAL_CERTIFICATE := platform
+LOCAL_DEX_PREOPT := false
 LOCAL_SRC_FILES := proprietary/vendor/app/ims/ims.apk
 include $(BUILD_PREBUILT)
 
