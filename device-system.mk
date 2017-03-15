@@ -24,7 +24,6 @@ PRODUCT_COPY_FILES += \
     vendor/lge/bullhead/proprietary/system/bin/cnss-daemon:system/bin/cnss-daemon \
     vendor/lge/bullhead/proprietary/system/bin/diag_klog:system/bin/diag_klog \
     vendor/lge/bullhead/proprietary/system/bin/diag_mdlog:system/bin/diag_mdlog \
-    vendor/lge/bullhead/proprietary/system/bin/fingerprintd:system/bin/fingerprintd \
     vendor/lge/bullhead/proprietary/system/bin/imsdatadaemon:system/bin/imsdatadaemon \
     vendor/lge/bullhead/proprietary/system/bin/imsqmidaemon:system/bin/imsqmidaemon \
     vendor/lge/bullhead/proprietary/system/bin/ims_rtp_daemon:system/bin/ims_rtp_daemon \
@@ -77,28 +76,18 @@ PRODUCT_COPY_FILES += \
     vendor/lge/bullhead/proprietary/system/framework/qcrilhook.jar:system/framework/qcrilhook.jar \
     vendor/lge/bullhead/proprietary/system/framework/rcsimssettings.jar:system/framework/rcsimssettings.jar \
     vendor/lge/bullhead/proprietary/system/framework/rcsservice.jar:system/framework/rcsservice.jar \
-    vendor/lge/bullhead/proprietary/system/lib64/hw/activity_recognition.bullhead.so:system/lib64/hw/activity_recognition.bullhead.so \
     vendor/lge/bullhead/proprietary/system/lib64/hw/fingerprint.bullhead.so:system/lib64/hw/fingerprint.bullhead.so \
-    vendor/lge/bullhead/proprietary/system/lib64/hw/gps.msm8992.so:system/lib64/hw/gps.msm8992.so \
     vendor/lge/bullhead/proprietary/system/lib64/hw/nfc_nci.bullhead.so:system/lib64/hw/nfc_nci.bullhead.so \
     vendor/lge/bullhead/proprietary/system/lib64/lib_fpc_tac_shared.so:system/lib64/lib_fpc_tac_shared.so \
-    vendor/lge/bullhead/proprietary/system/lib64/libgps.utils.so:system/lib64/libgps.utils.so \
     vendor/lge/bullhead/proprietary/system/lib64/libloc_api_v02.so:system/lib64/libloc_api_v02.so \
-    vendor/lge/bullhead/proprietary/system/lib64/libloc_core.so:system/lib64/libloc_core.so \
     vendor/lge/bullhead/proprietary/system/lib64/libloc_ds_api.so:system/lib64/libloc_ds_api.so \
-    vendor/lge/bullhead/proprietary/system/lib64/libloc_eng.so:system/lib64/libloc_eng.so \
-    vendor/lge/bullhead/proprietary/system/lib/hw/activity_recognition.bullhead.so:system/lib/hw/activity_recognition.bullhead.so \
     vendor/lge/bullhead/proprietary/system/lib/hw/fingerprint.bullhead.so:system/lib/hw/fingerprint.bullhead.so \
-    vendor/lge/bullhead/proprietary/system/lib/hw/gps.msm8992.so:system/lib/hw/gps.msm8992.so \
     vendor/lge/bullhead/proprietary/system/lib/hw/nfc_nci.bullhead.so:system/lib/hw/nfc_nci.bullhead.so \
     vendor/lge/bullhead/proprietary/system/lib/libdmengine.so:system/lib/libdmengine.so \
     vendor/lge/bullhead/proprietary/system/lib/libdmjavaplugin.so:system/lib/libdmjavaplugin.so \
     vendor/lge/bullhead/proprietary/system/lib/lib_fpc_tac_shared.so:system/lib/lib_fpc_tac_shared.so \
-    vendor/lge/bullhead/proprietary/system/lib/libgps.utils.so:system/lib/libgps.utils.so \
     vendor/lge/bullhead/proprietary/system/lib/libloc_api_v02.so:system/lib/libloc_api_v02.so \
-    vendor/lge/bullhead/proprietary/system/lib/libloc_core.so:system/lib/libloc_core.so \
     vendor/lge/bullhead/proprietary/system/lib/libloc_ds_api.so:system/lib/libloc_ds_api.so \
-    vendor/lge/bullhead/proprietary/system/lib/libloc_eng.so:system/lib/libloc_eng.so \
     vendor/lge/bullhead/proprietary/system/lib/soundfx/libfmas.so:system/lib/soundfx/libfmas.so \
     vendor/lge/bullhead/proprietary/system/priv-app/DMService/lib/arm/libdmengine.so:system/priv-app/DMService/lib/arm/libdmengine.so \
     vendor/lge/bullhead/proprietary/system/priv-app/DMService/lib/arm/libdmjavaplugin.so:system/priv-app/DMService/lib/arm/libdmjavaplugin.so
