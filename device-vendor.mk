@@ -358,7 +358,6 @@ PRODUCT_COPY_FILES += \
     vendor/lge/bullhead/proprietary/vendor/lib64/libC2D2.so:vendor/lib64/libC2D2.so \
     vendor/lge/bullhead/proprietary/vendor/lib64/libCB.so:vendor/lib64/libCB.so \
     vendor/lge/bullhead/proprietary/vendor/lib64/libCommandSvc.so:vendor/lib64/libCommandSvc.so \
-    vendor/lge/bullhead/proprietary/vendor/lib64/libEGL_adreno.so:vendor/lib64/libEGL_adreno.so \
     vendor/lge/bullhead/proprietary/vendor/lib64/libQSEEComAPI.so:vendor/lib64/libQSEEComAPI.so \
     vendor/lge/bullhead/proprietary/vendor/lib64/libRSDriver_adreno.so:vendor/lib64/libRSDriver_adreno.so \
     vendor/lge/bullhead/proprietary/vendor/lib64/libTimeService.so:vendor/lib64/libTimeService.so \
