@@ -265,8 +265,8 @@ for REAL_FILE in $(cat $BLOBS_TXT | grep -v -E '^ *(#|$)' | sed 's/^[-\/]*//' | 
         fi
 
         if [ -f "$OAT_FILE" ] && [ -d "$BOOT_DIR" ]; then
-            java -jar $BAKSMALI_PATH -deodex -o /tmp/aospa/dex -c boot.oat -d $BOOT_DIR $OAT_FILE
-            java -jar $SMALI_PATH -o /tmp/aospa/classes.dex /tmp/aospa/dex
+            java -jar $BAKSMALI_PATH deodex -o /tmp/aospa/dex -c boot.oat -d $BOOT_DIR $OAT_FILE
+            java -jar $SMALI_PATH as -o /tmp/aospa/classes.dex /tmp/aospa/dex
             rm -rf /tmp/aospa/dex
             zip -gjq $TARGET_FILE /tmp/aospa/classes.dex
             rm -f /tmp/aospa/classes.dex
